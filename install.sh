@@ -7,7 +7,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 sudo apt update
-sudo apt install -y ansible git
+sudo apt install -y ansible git locales
+
+echo "en_US.UTF-8 UTF-8" | sudo tee -a /etc/locale.gen
+sudo locale-gen 
 
 # Run the Ansible playbook
 ansible-playbook -i inventory.ini ansible.yml
