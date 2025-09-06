@@ -12,7 +12,9 @@
     - name: install packages
       become: true
       apt:
-        name: neovim
+        name: 
+          - neovim 
+          - tmux
 
     - name: Cycle bash completion with TAB
       blockinfile:
@@ -33,3 +35,10 @@
 
     - name: git set up
       shell: git config --global init.defaultBranch main
+    
+    - name: Edit tmux settings
+      blockinfile:
+        block: |
+          set -g mouse on
+        dest: ~/.tmux.conf
+        create: true
