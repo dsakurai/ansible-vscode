@@ -28,6 +28,36 @@
           export EDITOR="/usr/bin/nvim"
         dest: /etc/profile.d/editor.sh
 
+    - name: ensure rifle.conf exists
+      tags: rifle
+      command:
+        cmd: ranger --copy-config=rifle
+        creates: "~/.config/ranger/rifle.conf"
+
+    - name: open yml / yaml in nvim
+      tags: ranger
+      blockinfile:
+        path: "~/.config/ranger/rifle.conf"
+        insertbefore: BOF
+        block: |
+
+          # Prefer $EDITOR/$VISUAL for YAML and patch files.
+          # Matches .yml, .yaml and .patch; placed before generic/xdg-open rules.
+          ext ya?ml|patch, label editor = ${VISUAL:-$EDITOR} -- "$@"
+          ext ya?ml|patch, label pager  = ${PAGER:-less} -- "$@"
+
+    - name: Deploy init.lua for Neovim
+      tags: neovim
+      blockinfile:
+        dest: "{{ lookup('env','HOME') }}/.config/nvim/init.lua"
+        create: true
+        marker: -- {mark} ANSIBLE MANAGED DOTFILE --
+        content: |
+          -- Press Shift+Tab to deindent
+          vim.keymap.set("i", "<S-Tab>", "<C-d>")
+          vim.keymap.set("n", "<S-Tab>", "<<")
+          vim.keymap.set("v", "<S-Tab>", "<gv")
+
     - name: Cycle bash completion with TAB
       blockinfile:
         block: |
