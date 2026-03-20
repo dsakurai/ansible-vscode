@@ -1,8 +1,14 @@
 # My VSCode Settings
 
-This project generates my personal VSCode settings.
-It can update existing settings or create a new one.
+This project generates my personal VS Code settings.
+I made this project because the settings sync of VS Code was tricky to maintain across different machines for my use.
+
+This project updates existing settings or generate a new settings files.
 It keeps a back up of the old version.
+
+Go to [`demo`](demo) for example settings files generated.
+
+## How to Use This Project
 
 Optionally, if you have existing settings directory that is inaccessible from this script, you can copy them in any accesible directory and run this script.
 
