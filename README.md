@@ -1,6 +1,8 @@
+# Ansible VSCode
 
+A development environment for working with Ansible in VSCode.
+
+Run the following:
 ```
-git clone git@github.com:dsakurai/ansible-dotfiles.git ~/dotfiles
-pushd ~/dotfiles
-./install.sh
+./generate-vscode-settings.sh
 ```

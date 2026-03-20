@@ -14,8 +14,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # Password-less sudo
     && echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/${USERNAME} && chmod 0440 /etc/sudoers.d/${USERNAME}
 
-# RUN apt-get update && apt-get install -y --no-install-recommends \
-#     \
-#     && rm -rf /var/lib/apt/lists/* \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    # For Ansible
+    ansible \
+    # For getopt
+    util-linux \
+    && rm -rf /var/lib/apt/lists/*
 
 USER ${USERNAME}
