@@ -30,7 +30,7 @@ PS3="Choose path to nvim.exe [1-3]: "
 select choice in "None" "scoop default" "Custom directory"; do
   case "$choice" in
     "None")
-      OUTPUT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/ansible-vscode-out.XXXXXX")"
+      NVIM_EXE=""
       break
       ;;
     "scoop default")
