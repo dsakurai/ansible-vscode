@@ -19,3 +19,11 @@ The following command will generate the default settings in the [`demo`](demo) d
 ```
 ./generate-vscode-settings.sh -d
 ```
+
+## Maintenance
+
+Run 
+```
+./generate-vscode-settings.sh -d
+```
+and add the generated settings file in git.
