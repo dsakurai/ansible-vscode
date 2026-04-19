@@ -29,5 +29,20 @@
         "command": "-inlineChat.start",
         "key": "ctrl+i",
         "when": "editorFocus && inlineChatHasEditsAgent && inlineChatPossible && !editorReadonly && !editorSimpleInput && activeEditor != 'workbench.editor.notebook' || editorFocus && inlineChatHasNotebookAgent && inlineChatPossible && !editorReadonly && !editorSimpleInput && activeEditor == 'workbench.editor.notebook' || editorFocus && inlineChatHasNotebookInline && inlineChatPossible && !editorReadonly && !editorSimpleInput && activeEditor == 'workbench.editor.notebook' || editorFocus && inlineChatHasProvider && inlineChatPossible && !editorReadonly && !editorSimpleInput && activeEditor != 'workbench.editor.notebook'"
+    },
+    {
+        "command": "selectNextSuggestion",
+        "key": "tab",
+        "when": "editorTextFocus && suggestWidgetVisible"
+    },
+    {
+        "command": "selectPrevSuggestion",
+        "key": "shift+tab",
+        "when": "editorTextFocus && suggestWidgetVisible"
+    },
+    {
+        "command": "editor.action.triggerSuggest",
+        "key": "tab",
+        "when": "editorTextFocus && !suggestWidgetVisible"
     }
 ]

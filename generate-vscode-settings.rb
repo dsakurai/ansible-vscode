@@ -103,15 +103,37 @@ roles = {
                         end
                 end
         ),
+    },
+
+    "neovim_config" => {
+        "nvim_config_dir" =>
+        (demo_mode ? -> { File.join(SCRIPT_DIR, "demo") }
+                   : -> do
+                        choice = ask_user("Choose neovim config directory:", ["Temporary directory", "./", "Custom directory"])
+                        case choice
+                        when "Temporary directory"
+                          Dir.mktmpdir("ansible-nvim-out.")
+                        when "./"
+                          "./"
+                        else
+                          Readline.readline("Enter path: ", true)&.strip || ""
+                        end
+                   end
+        ),
+
+        "obsidian_workspace_private_path" =>
+        (demo_mode ? -> { File.join(SCRIPT_DIR, "demo", "obsidian") }
+                   : -> do
+                        Readline.readline("Enter Obsidian workspace path: ", true)&.strip || ""
+                   end
+        ),
     }
 }
 
 if demo_mode
 
     # Run all roles found in `roles`
-    roles_selected = [
-        roles.keys
-    ]
+    roles_selected = roles.keys
 
 else
     roles_selected = [
