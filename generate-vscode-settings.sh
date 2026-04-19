@@ -70,6 +70,7 @@ ansible-playbook \
   --connection local \
     --extra-vars "vscode_settings_dir=${OUTPUT_DIR}" \
     --extra-vars "nvim_exe=${NVIM_EXE}" \
+    --extra-vars "role=vscode" \
     "$SCRIPT_DIR/playbook.yml"
 
 echo "Generated:"

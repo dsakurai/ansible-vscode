@@ -8,11 +8,6 @@
     - dsakurai.common
 
   tasks:
-    - name: Create output directory
-      ansible.builtin.file:
-        path: "{{ vscode_settings_dir }}"
-        state: directory
-        mode: "0755"
     - name: Run VSCode role
       ansible.builtin.include_role:
-        name: dsakurai.common.vscode
+        name: "dsakurai.common.{{ role }}"
