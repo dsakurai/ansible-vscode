@@ -103,19 +103,33 @@ roles = {
     }
 }
 
-role = ask_user("Choose role:", roles.keys)
+if demo_mode
 
-extra_vars = { "role" => role }.merge(
-  roles[role].transform_values(&:call)
-)
+    # Run all roles found in `roles`
+    roles_selected = [
+        roles.keys
+    ]
 
-puts "Extra vars: #{extra_vars.inspect}"
+else
+    roles_selected = [
+        ask_user("Choose role:", roles.keys)
+    ]
+end
 
-system(
-  "ansible-playbook",
-  "--inventory", "localhost,",
-  "--connection", "local",
-  *extra_vars.flat_map { |k, v| ["--extra-vars", "#{k}=#{v}"] },
-  File.join(SCRIPT_DIR, "playbook.yml"),
-  exception: true
-)
+roles_selected.each do |role|
+
+  extra_vars = { "role" => role }.merge(
+    roles[role].transform_values(&:call)
+  )
+
+  puts "Extra-vars passed to Ansible: #{extra_vars.inspect}"
+
+  system(
+    "ansible-playbook",
+    "--inventory", "localhost,",
+    "--connection", "local",
+    *extra_vars.flat_map { |k, v| ["--extra-vars", "#{k}=#{v}"] },
+    File.join(SCRIPT_DIR, "playbook.yml"),
+    exception: true
+  )
+end
