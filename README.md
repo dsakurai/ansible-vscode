@@ -30,6 +30,6 @@ The following command will generate the default settings in the [`demo`](demo) d
 
 Run 
 ```
-./generate-vscode-settings.sh -d
+./generate-vscode-settings.py -d
 ```
 and add the generated settings file in git.
