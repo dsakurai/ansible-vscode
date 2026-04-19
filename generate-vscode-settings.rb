@@ -63,11 +63,14 @@ OptionParser.new do |opts|
   end
 end.parse!
 
+# Ansible roles
 roles = {
+    # Role in dsakurai.common
     "vscode" => {
+        # A variable in Ansible we pass to the playbook
         "vscode_settings_dir" =>
-        (demo_mode ? -> { File.join(SCRIPT_DIR, "demo") }
-                   : -> do
+        (demo_mode ? -> { File.join(SCRIPT_DIR, "demo") } # Value used in demo mode. Note that, this is a lambda function that will return the demo value when called.
+                   : -> do # When we are not in the demo mode, ask the user for what value to set.
                         puts "..."
                         choice = ask_user("Choose VSCode settings directory:", ["Temporary directory", "./", "Custom directory"])
                         case choice
