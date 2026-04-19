@@ -84,20 +84,6 @@ def prompt_nvim_exe
   end
 end
 
-def print_file(label, path)
-  puts label
-  puts "%%%%%%%%%"
-  if File.exist?(path)
-    print File.read(path)
-  else
-    puts "(file not found: #{path})"
-  end
-  puts
-  puts "%%%%%%%%%"
-  puts
-  puts
-end
-
 output_dir = nil
 nvim_exe = nil
 
@@ -130,7 +116,3 @@ system(
   File.join(SCRIPT_DIR, "playbook.yml"),
   exception: true
 )
-
-puts "Generated:"
-print_file("#{output_dir}/settings.json", "#{output_dir}/settings.json")
-print_file("#{output_dir}/keybindings.json", "#{output_dir}/keybindings.json")
